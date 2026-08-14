@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voxyl AI — The Private AI Assistant</title>
+  <meta name="icon" href="favicon.ico" />
+  <meta name="description" content="Voxyl AI is your intelligent workspace for thinking, creating, researching, and getting things done." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo"><img src="logo.png" class="logo-mark"> Voxyl AI</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#features">Features</a>
+      <a href="#about">Our Goal</a>
+      <a href="https://chat.voxylai.com" class="nav-button">Start Chatting</a>
+    </div>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Introducing Voxyl AI</div>
+      <h1>Privacy<br><span>without compromise.</span></h1>
+      <p class="hero-description">Voxyl AI is your private and secure AI assistant without limits.</p>
+      <div class="hero-buttons">
+        <a href="https://chat.voxylai.com" class="button button-primary">Start Chatting</a>
+        <a href="#features" class="button button-secondary">Explore Features</a>
+      </div>
+    </section>
+
+    <section id="product">
+      <div class="product-wrapper">
+        <div class="product">
+          <div class="window-bar">
+            <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
+            <span class="window-title">Voxyl AI</span>
+          </div>
+          <div class="app">
+            <aside class="sidebar">
+              <div class="sidebar-label">Workspace</div>
+              <div class="sidebar-item active">New conversation</div>
+              <div class="sidebar-item">Code</div>
+              <div class="sidebar-item">Imagine</div>
+              <div class="sidebar-label">Recent</div>
+              <div class="sidebar-item">Product ideas</div>
+              <div class="sidebar-item">Research notes</div>
+            </aside>
+            <div class="chat">
+              <div class="messages">
+                <div class="message"><div class="message-label">You</div><p>Help me turn this idea into something real.</p></div>
+                <div class="message ai"><div class="message-label">Voxyl AI</div><p>Absolutely. Let's break the idea down into clear steps, identify what matters most, and build from there.</p></div>
+              </div>
+              <div class="input-bar">Ask Voxyl AI anything...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-heading">
+        <div class="small">FEATURES</div>
+        <h2>Your private<br>companion.</h2>
+        <p>Designed to keep your data safe and provide you answers without artificial constraints.</p>
+      </div>
+      <div class="features">
+        <article class="feature"><div class="feature-number">01</div><h3>Private</h3><p>Your data is stored on our server for only 24 hours and locally on your device as long as you want.</p></article>
+        <article class="feature"><div class="feature-number">02</div><h3>Unfiltered Chats</h3><p>We offer multiple LLMs for without artificial filters allowing you to have conversations about sensitive topics.</p></article>
+        <article class="feature"><div class="feature-number">03</div><h3>Free Forever</h3><p>Our Voxyl AI Chat is completely free to use without limitations.</p></article>
+        <article class="feature"><div class="feature-number">04</div><h3>Smarter AI</h3><p>We test our AI models to ensure they fit our quality standards.</p></article>
+        <article class="feature"><div class="feature-number">05</div><h3>Speed</h3><p>The speed of our AI responses is one of the fastest in the industry.</p></article>
+        <article class="feature"><div class="feature-number">06</div><h3>Regular Updates</h3><p>We regularly update our AI models to improve their performance and seek to expand to more features, such as image and video generation.</p></article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="showcase">
+        <div class="showcase-copy"><h2>Unrestricted AI<br>built for you.</h2><p>Voxyl AI isn't here to steal your data and limit your potential. It's here to give you a private alternative which can help you achieve more.</p></div>
+        <div class="showcase-visual"><div class="orb"></div></div>
+      </div>
+    </section>
+
+    <section class="cta" id="get-started">
+      <h2>Meet Voxyl AI.</h2>
+      <p>The service you didn't know you need.</p>
+      <a href="https://chat.voxylai.com" class="button button-primary">Start Chatting</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Voxyl AI</div>
+    <div class="footer-links"><a href="https://discord.gg/AsGEjxZ3SF">Discord</a></div>
+  </footer>
+
+  <script>
+    const menu = document.getElementById('mobileMenu');
+    const links = document.getElementById('navLinks');
+    menu.addEventListener('click', () => links.classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => links.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
