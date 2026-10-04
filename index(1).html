@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nothing to see here</title>
+<style>
+  :root { --bg:#15133a; --dot:#ffd9c2; --glow:#7fe3ff; --text:#fff4ec; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { height:100%; background:var(--bg); color:var(--text); overflow:hidden;
+    font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif; }
+  canvas { position:fixed; inset:0; width:100%; height:100%; }
+  main { position:relative; z-index:1; height:100%; display:grid; place-content:center;
+    text-align:center; padding:2rem; pointer-events:none; }
+  h1 { font-size:clamp(2.6rem, 9vw, 6.5rem); font-weight:800; letter-spacing:-.04em; line-height:1;
+    text-shadow:0 0 40px rgba(21,19,58,.9), 0 0 12px rgba(21,19,58,.9); }
+  p { margin-top:1.1rem; font-size:clamp(1rem, 2.4vw, 1.25rem); opacity:.8;
+    text-shadow:0 0 18px rgba(21,19,58,1); }
+</style>
+</head>
+<body>
+<canvas id="c" aria-hidden="true"></canvas>
+<main>
+  <h1>Nothing to see here.</h1>
+  <p>This project has wrapped up. Poke the dots on your way out.</p>
+</main>
+<script>
+(() => {
+  const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GAP = 28;
+  let W, H, cols, rows, dpr, ripples = [], mouse = { x:-999, y:-999 };
+
+  function resize() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(W / GAP) + 1; rows = Math.ceil(H / GAP) + 1;
+  }
+  addEventListener('resize', resize); resize();
+
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  addEventListener('pointerdown', e => ripples.push({ x:e.clientX, y:e.clientY, t:performance.now() }));
+
+  function frame(now) {
+    ctx.clearRect(0, 0, W, H);
+    ripples = ripples.filter(r => now - r.t < 2500);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        const x = i * GAP, y = j * GAP;
+        // slow idle wave
+        let s = still ? 0 : Math.sin(i * .35 + now / 900) * Math.cos(j * .3 + now / 1300);
+        let size = 1.6 + s * .7, hot = 0;
+        // cursor bulge
+        const dx = x - mouse.x, dy = y - mouse.y, d = Math.hypot(dx, dy);
+        if (d < 140) { const k = 1 - d / 140; size += k * 4; hot = Math.max(hot, k); }
+        // click ripples
+        for (const r of ripples) {
+          const rd = Math.hypot(x - r.x, y - r.y), front = (now - r.t) * .45;
+          const band = Math.max(0, 1 - Math.abs(rd - front) / 50) * (1 - (now - r.t) / 2500);
+          size += band * 5; hot = Math.max(hot, band);
+        }
+        ctx.fillStyle = hot > .05 ? `rgba(127,227,255,${.4 + hot * .6})` : 'rgba(255,217,194,.35)';
+        ctx.beginPath(); ctx.arc(x, y, Math.max(.6, size), 0, 6.283); ctx.fill();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
