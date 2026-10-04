@@ -21,9 +21,9 @@
                                   Until a file exists, a grey square placeholder shows.
   - Add a plan bullet ........... copy an <li> in #pricing
   - Add a feature ............... copy a whole <article class="feature"> in #features
-  - Use your own feature image .. replace the <svg>…</svg> inside .feature-media
-                                  with <img src="your-image.jpg" alt="…">
-                                  (1200 × 800 px works best)
+  - Feature photos .............. put photo-1.jpg … photo-4.jpg next to this file
+                                  (1200 × 800 px works best), or change the src.
+                                  Until a file exists, a grey placeholder shows.
   ==================================================================
   -->
 
@@ -95,8 +95,9 @@
     .features { margin-top: 48px; display: grid; gap: 72px; }
     .feature { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
     .feature:nth-child(even) .feature-media { order: 2; }
-    .feature-media { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; aspect-ratio: 3 / 2; }
-    .feature-media svg, .feature-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .feature-media { position: relative; display: grid; place-items: center; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; aspect-ratio: 3 / 2; }
+    .feature-media::before { content: "Photo · 1200 × 800"; color: #a3a3a3; font-size: 14px; }  /* placeholder label, hidden once the photo loads */
+    .feature-media img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
     .feature h3 { font-size: 26px; letter-spacing: -0.025em; font-weight: 600; margin-bottom: 12px; }
     .feature p { color: var(--muted); font-size: 17px; max-width: 420px; }
 
@@ -177,10 +178,10 @@
           <p class="plan-desc">Everything you need for everyday chatting.</p>
           <ul class="plan-list">
             <li>Three models: Lite, Standard and Think</li>
-            <li>Premade prompt suggestions</li>
+            <li>Web search</li>
             <li>Delete your chats permanently anytime</li>
             <li>Text chat (no image generation)</li>
-            <li>Shared capacity</li>
+            <li>Run your code and design websites inside Voxyl AI</li>
           </ul>
         </article>
 
@@ -194,8 +195,8 @@
           <ul class="plan-list">
             <li>Everything in Free</li>
             <li>Our most powerful models</li>
-            <li>Priority access to hardware</li>
-            <li>Direct contact with the team</li>
+            <li>Image generator</li>
+            <li>Features based on requests</li>
             <li>Early access to new features</li>
           </ul>
         </article>
@@ -214,21 +215,7 @@
         <!-- Feature: models -->
         <article class="feature">
           <div class="feature-media">
-            <svg viewBox="0 0 1200 800" font-family="Inter,system-ui,sans-serif" role="img" aria-label="Three model options: Lite, Standard and Think">
-              <rect width="1200" height="800" fill="#fafafa"/>
-              <rect x="200" y="140" width="800" height="150" rx="24" fill="#fff" stroke="#e5e5e5" stroke-width="2"/>
-              <circle cx="280" cy="215" r="28" fill="#f0f0f0"/>
-              <text x="340" y="205" font-size="34" font-weight="600">Lite</text>
-              <text x="340" y="248" font-size="24" fill="#777">Quick answers and searches</text>
-              <rect x="200" y="325" width="800" height="150" rx="24" fill="#fff" stroke="#000" stroke-width="3"/>
-              <circle cx="280" cy="400" r="28"/>
-              <text x="340" y="390" font-size="34" font-weight="600">Standard</text>
-              <text x="340" y="433" font-size="24" fill="#777">Everyday chatting</text>
-              <rect x="200" y="510" width="800" height="150" rx="24" fill="#fff" stroke="#e5e5e5" stroke-width="2"/>
-              <circle cx="280" cy="585" r="28" fill="#f0f0f0"/>
-              <text x="340" y="575" font-size="34" font-weight="600">Think</text>
-              <text x="340" y="618" font-size="24" fill="#777">Coding and harder problems</text>
-            </svg>
+            <img src="photo-1.jpg" alt="Describe this photo" loading="lazy" onerror="this.style.display='none'">
           </div>
           <div class="feature-text">
             <h3>A model for every task</h3>
@@ -239,20 +226,7 @@
         <!-- Feature: privacy -->
         <article class="feature">
           <div class="feature-media">
-            <svg viewBox="0 0 1200 800" font-family="Inter,system-ui,sans-serif" role="img" aria-label="A chat list with a delete option and a lock">
-              <rect width="1200" height="800" fill="#fafafa"/>
-              <rect x="220" y="130" width="760" height="540" rx="28" fill="#fff" stroke="#e5e5e5" stroke-width="2"/>
-              <g fill="#f0f0f0"><rect x="270" y="190" width="460" height="28" rx="14"/><rect x="270" y="300" width="380" height="28" rx="14"/><rect x="270" y="410" width="500" height="28" rx="14"/></g>
-              <g fill="#e5e5e5"><rect x="270" y="236" width="300" height="18" rx="9"/><rect x="270" y="346" width="240" height="18" rx="9"/><rect x="270" y="456" width="340" height="18" rx="9"/></g>
-              <g stroke="#000" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M880 200h50M890 200v-14h30v14M886 220l6 56h36l6-56"/>
-                <path d="M880 310h50M890 310v-14h30v14M886 330l6 56h36l6-56"/>
-              </g>
-              <rect x="680" y="530" width="240" height="90" rx="45"/>
-              <path d="M740 585v-14a18 18 0 0 1 36 0v14" stroke="#fff" stroke-width="5" fill="none"/>
-              <rect x="732" y="585" width="52" height="30" rx="6" fill="#fff"/>
-              <text x="810" y="585" font-size="24" fill="#fff" font-weight="500">Private</text>
-            </svg>
+            <img src="photo-2.jpg" alt="Describe this photo" loading="lazy" onerror="this.style.display='none'">
           </div>
           <div class="feature-text">
             <h3>Your chats stay yours</h3>
@@ -263,25 +237,7 @@
         <!-- Feature: prompts -->
         <article class="feature">
           <div class="feature-media">
-            <svg viewBox="0 0 1200 800" font-family="Inter,system-ui,sans-serif" role="img" aria-label="A grid of clickable prompt suggestions">
-              <rect width="1200" height="800" fill="#fafafa"/>
-              <g stroke="#e5e5e5" stroke-width="2" fill="#fff">
-                <rect x="170" y="150" width="400" height="200" rx="24"/>
-                <rect x="630" y="150" width="400" height="200" rx="24"/>
-                <rect x="170" y="400" width="400" height="200" rx="24" stroke="#000" stroke-width="3"/>
-                <rect x="630" y="400" width="400" height="200" rx="24"/>
-              </g>
-              <g font-size="28" font-weight="600">
-                <text x="205" y="215">Plan my week</text><text x="665" y="215">Explain a topic</text>
-                <text x="205" y="465">Debug my code</text><text x="665" y="465">Draft an email</text>
-              </g>
-              <g fill="#e5e5e5">
-                <rect x="205" y="245" width="280" height="16" rx="8"/><rect x="205" y="280" width="200" height="16" rx="8"/>
-                <rect x="665" y="245" width="280" height="16" rx="8"/><rect x="665" y="280" width="220" height="16" rx="8"/>
-                <rect x="205" y="495" width="280" height="16" rx="8"/><rect x="205" y="530" width="240" height="16" rx="8"/>
-                <rect x="665" y="495" width="280" height="16" rx="8"/><rect x="665" y="530" width="180" height="16" rx="8"/>
-              </g>
-            </svg>
+            <img src="photo-3.jpg" alt="Describe this photo" loading="lazy" onerror="this.style.display='none'">
           </div>
           <div class="feature-text">
             <h3>Start with a prompt</h3>
@@ -292,14 +248,7 @@
         <!-- Feature: hardware -->
         <article class="feature">
           <div class="feature-media">
-            <svg viewBox="0 0 1200 800" role="img" aria-label="A server rack">
-              <rect width="1200" height="800" fill="#fafafa"/>
-              <g fill="#fff" stroke="#e5e5e5" stroke-width="2"><rect x="250" y="140" width="700" height="140" rx="24"/><rect x="250" y="330" width="700" height="140" rx="24"/><rect x="250" y="520" width="700" height="140" rx="24"/></g>
-              <g fill="#f0f0f0"><rect x="300" y="190" width="300" height="40" rx="20"/><rect x="300" y="380" width="300" height="40" rx="20"/><rect x="300" y="570" width="300" height="40" rx="20"/></g>
-              <circle cx="780" cy="210" r="14"/><circle cx="830" cy="210" r="14"/><circle cx="880" cy="210" r="14" fill="#e5e5e5"/>
-              <circle cx="780" cy="400" r="14"/><circle cx="830" cy="400" r="14" fill="#e5e5e5"/><circle cx="880" cy="400" r="14" fill="#e5e5e5"/>
-              <circle cx="780" cy="590" r="14"/><circle cx="830" cy="590" r="14"/><circle cx="880" cy="590" r="14"/>
-            </svg>
+            <img src="photo-4.jpg" alt="Describe this photo" loading="lazy" onerror="this.style.display='none'">
           </div>
           <div class="feature-text">
             <h3>Runs on our own hardware</h3>
@@ -319,7 +268,7 @@
         <a href="https://voxylai.com/privacy-policy">Privacy Policy</a>
         <a href="https://voxylai.com/tos">Terms of Service</a>
         <a href="https://voxylai.com/gdpr">GDPR</a>
-        <a href="mailto:you@example.com">Contact</a>
+        <a href="mailto:voxylai.com@proton.me">Contact</a>
       </nav>
     </div>
   </footer>
