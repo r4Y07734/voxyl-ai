@@ -1,431 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service — Voxyl AI</title>
-<link rel="icon" type="image/x-icon" href="../icon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #F7F7F4;
-    --bg-alt: #EFEFEA;
-    --panel: #FFFFFF;
-    --ink: #131315;
-    --ink-soft: #58585E;
-    --ink-faint: #8A8A8F;
-    --accent: #3239C9;
-    --accent-ink: #FFFFFF;
-    --accent-soft: #E8E9FB;
-    --line: #DFDFD9;
-    --header-bg: rgba(247,247,244,0.86);
-    --on-ink-muted: #A8A8B8;
-    --on-ink-accent: #7A7DE0;
-    --radius: 10px;
-    --max: 1080px;
-  }
-
-  html[data-theme="dark"]{
-    --bg: #0E0E10;
-    --bg-alt: #18181B;
-    --panel: #1B1B1F;
-    --ink: #F2F2F0;
-    --ink-soft: #A9A9B2;
-    --ink-faint: #6E6E76;
-    --accent: #7A80FF;
-    --accent-ink: #0E0E10;
-    --accent-soft: #23244A;
-    --line: #2A2A2F;
-    --header-bg: rgba(14,14,16,0.82);
-    --on-ink-muted: #55565F;
-    --on-ink-accent: #3239C9;
-  }
-
-  body{ transition: background-color .25s ease, color .25s ease; }
-
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-  }
-  h1,h2,h3{
-    font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-  .mono{
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.02em;
-  }
-  a{ color: inherit; }
-  .wrap{
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-  ::selection{ background: var(--accent-soft); color: var(--accent); }
-
-  :focus-visible{
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  /* ---------- NAV ---------- */
-  header{
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: var(--header-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav.wrap{
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    font-family:'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    text-decoration:none;
-    color: var(--ink);
-  }
-  .logo-mark{
-    width: 20px; height: 20px;
-    border-radius: 5px;
-    background: var(--ink);
-    position: relative;
-    flex: 0 0 auto;
-  }
-  .logo-mark::after{
-    content:"";
-    position:absolute;
-    left: 6px; top: 6px;
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--accent-soft);
-  }
-  .nav-links{
-    display:flex;
-    align-items:center;
-    gap: 32px;
-    list-style:none;
-    margin:0; padding:0;
-  }
-  .nav-links a{
-    text-decoration:none;
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    transition: color .15s ease;
-  }
-  .nav-links a:hover{ color: var(--ink); }
-  .nav-cta{
-    display:flex;
-    align-items:center;
-    gap: 18px;
-  }
-
-  .theme-toggle{
-    position:relative;
-    width: 50px;
-    height: 27px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: var(--bg-alt);
-    cursor: pointer;
-    flex: 0 0 auto;
-    padding: 0;
-  }
-  .theme-toggle svg{
-    position:absolute;
-    top:50%;
-    transform: translateY(-50%);
-    width: 13px; height: 13px;
-    color: var(--ink-faint);
-    pointer-events:none;
-    transition: color .2s ease;
-  }
-  .theme-toggle .i-sun{ left: 6px; }
-  .theme-toggle .i-moon{ right: 6px; }
-  .theme-toggle .theme-toggle-thumb{
-    position:absolute;
-    top: 2px; left: 2px;
-    width: 21px; height: 21px;
-    border-radius: 50%;
-    background: var(--ink);
-    transition: transform .25s ease;
-  }
-  html[data-theme="dark"] .theme-toggle .theme-toggle-thumb{
-    transform: translateX(23px);
-  }
-  html[data-theme="dark"] .theme-toggle .i-moon{ color: var(--accent); }
-  html:not([data-theme="dark"]) .theme-toggle .i-sun{ color: var(--accent); }
-
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    padding: 11px 20px;
-    border-radius: 7px;
-    font-size: 14.5px;
-    font-weight: 500;
-    text-decoration:none;
-    cursor:pointer;
-    border: 1px solid transparent;
-    transition: transform .12s ease, filter .15s ease, border-color .15s ease;
-    font-family: 'IBM Plex Sans', sans-serif;
-  }
-  .btn:active{ transform: translateY(1px); }
-  .btn-primary{
-    background: var(--ink);
-    color: var(--bg);
-  }
-  .btn-primary:hover{ filter: brightness(0.85); }
-  .btn-ghost{
-    background: transparent;
-    color: var(--ink);
-    border-color: var(--line);
-  }
-  .btn-ghost:hover{ border-color: var(--ink-faint); }
-  .btn-sm{ padding: 8px 14px; font-size: 13.5px; }
-
-  /* ---------- LEGAL DOC ---------- */
-  .legal{
-    padding: 72px 0 100px;
-  }
-  .legal-wrap{
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-  .eyebrow-dot{
-    width:6px; height:6px; border-radius:50%;
-    background: var(--accent);
-  }
-  .legal-head h1{
-    font-size: clamp(30px, 4vw, 40px);
-  }
-  .legal-updated{
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--ink-faint);
-  }
-  .legal-intro{
-    margin-top: 22px;
-    font-size: 15.5px;
-    color: var(--ink-soft);
-    max-width: 60ch;
-  }
-  .legal-body{
-    margin-top: 20px;
-  }
-  .legal-section{
-    padding: 30px 0;
-    border-top: 1px solid var(--line);
-  }
-  .legal-section h2{
-    font-size: 18px;
-  }
-  .legal-section p{
-    margin-top: 12px;
-    font-size: 14.5px;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    max-width: 62ch;
-  }
-  .legal-section ul{
-    margin: 12px 0 0;
-    padding-left: 20px;
-    color: var(--ink-soft);
-    font-size: 14.5px;
-    line-height: 1.7;
-    max-width: 62ch;
-  }
-  .legal-back{
-    margin-top: 40px;
-    display: inline-flex;
-    align-items:center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--ink-soft);
-    text-decoration:none;
-  }
-  .legal-back:hover{ color: var(--ink); }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    border-top: 1px solid var(--line);
-    padding: 40px 0;
-  }
-  .footer-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap: 16px;
-  }
-  .footer-links{
-    display:flex;
-    gap: 22px;
-    list-style:none;
-    padding:0; margin:0;
-  }
-  .footer-links a{
-    text-decoration:none;
-    font-size: 13.5px;
-    color: var(--ink-soft);
-  }
-  .footer-links a:hover{ color: var(--ink); }
-  .footer-copy{
-    font-size: 13px;
-    color: var(--ink-faint);
-  }
-
-  @media (max-width: 880px){
-    .nav-links{ display:none; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service – Voxyl AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../legal.css">
+  <!-- Yellow [brackets] are details only you know. Fill them in, then delete the .todo rule in legal.css. -->
 </head>
 <body>
-
-<header>
-  <nav class="wrap">
-    <a href="https://voxylai.com" class="logo">
-      <img class="logo-mark" aria-hidden="true" src="../logo.png">
-      Voxyl AI
-    </a>
-    <ul class="nav-links">
-      <li><a href="https://voxylai.com#tiers">Pricing</a></li>
-      <li><a href="https://voxylai.com#privacy">Privacy</a></li>
-      <li><a href="https://voxylai.com#faq">FAQ</a></li>
-      <li><a href="https://voxylai.com#social">Community</a></li>
-    </ul>
-    <div class="nav-cta">
-      <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="false" aria-label="Switch to dark mode">
-        <svg class="i-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <svg class="i-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        <span class="theme-toggle-thumb" aria-hidden="true"></span>
-      </button>
-      <a href="https://chat.voxylai.com" class="btn btn-primary btn-sm">Get started</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="logo"><img src="logo.png" alt="" onerror="this.style.display='none'"></span>
+        Voxyl AI
+      </a>
+      <nav class="nav">
+        <a href="index.html#access">Access</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#features">Features</a>
+      </nav>
     </div>
-  </nav>
-</header>
+  </header>
 
-<main class="legal">
-  <div class="legal-wrap">
-    <div class="legal-head">
-      <div class="eyebrow"><span class="eyebrow-dot"></span> Legal</div>
+  <main class="container">
+    <article class="doc">
       <h1>Terms of Service</h1>
-      <div class="legal-updated mono">Last updated — October 3, 2026</div>
-      <p class="legal-intro">These terms cover your use of Voxyl AI, on both the Free and Pro plans. By creating an account or using the chat, you're agreeing to what's below.</p>
+      <p class="updated">Last updated: 4 October 2026</p>
+      <p class="intro">These terms are the agreement between you and <span class="todo">[your name or business name]</span> for using Voxyl AI. By requesting access or using the service you accept them.</p>
+      <ol class="toc"><li><a href="#service">The service</a></li><li><a href="#eligibility">Eligibility and accounts</a></li><li><a href="#tiers">Free and Pro</a></li><li><a href="#ai">AI output</a></li><li><a href="#scanning">Abliterated models and scanning</a></li><li><a href="#use">Acceptable use</a></li><li><a href="#content">Your content</a></li><li><a href="#fees">Fees</a></li><li><a href="#ending">Suspension and ending</a></li><li><a href="#liability">Liability</a></li><li><a href="#law">Law and changes</a></li></ol>
+      <h2 id="service">The service</h2>
+      <p>Voxyl AI is a private AI chat service built on Open WebUI, Ollama and ComfyUI. Access is by approval only. We may change, limit or stop features, and we don't promise the service will always be available.</p>
+
+      <h2 id="eligibility">Eligibility and accounts</h2>
+      <ul>
+        <li>You must be 18 or older.</li>
+        <li>Give us accurate details and keep your login secret. Accounts are personal and can't be shared or resold.</li>
+        <li>We can approve or reject any access request. For Pro we may ask you to verify a few things first.</li>
+      </ul>
+
+      <h2 id="tiers">Free and Pro</h2>
+      <p>Free gives access to our standard models. Pro gives access to more powerful models, including abliterated ones, and is only available after approval and acceptance of the scanning terms below. What each tier includes is described on the <a href="index.html#pricing">pricing section</a> and may change.</p>
+
+      <h2 id="ai">AI output</h2>
+      <p>Voxyl AI is an artificial intelligence chatbot and it can make mistakes. Replies may be wrong, incomplete or offensive. Check anything important and don't rely on replies for medical, legal, financial or safety decisions.</p>
+
+      <div class="notice" id="scanning">
+        <h2>Abliterated models and scanning</h2>
+        <p>Abliterated models have their built-in refusals removed. To keep them from being used to cause harm, we scan the messages you send to them and the replies they produce, including image prompts sent to ComfyUI. The scanning is <span class="todo">[automated / automated with human review of flagged items]</span> and looks for <span class="todo">[illegal content, threats and other prohibited use under the Terms of Service]</span>.</p>
+        <p>Flagged messages may be read by <span class="todo">[you / a named person]</span>, who can act on them: warn you, suspend your account, or report to the authorities where the law requires. Flagged items are kept for <span class="todo">[period]</span>. Other messages are <span class="todo">[not kept beyond your normal chat history]</span>.</p>
+        <p>You are responsible for what you ask these models for and what you do with the results. This applies only to abliterated models. Chats with Free-tier models are not scanned. You must accept this before using an abliterated model.</p>
+      </div>
+
+      <h2 id="use">Acceptable use</h2>
+      <p>You may not use Voxyl AI to:</p>
+      <ul>
+        <li>break the law, or create or seek sexual content involving minors (we report this);</li>
+        <li>threaten, harass, defraud or harm other people, or produce material to do so;</li>
+        <li>create malware or help attack systems you don't own;</li>
+        <li>attempt to bypass limits, scan or monitor, or extract or copy the models;</li>
+        <li>overload the service, or resell or share your access.</li>
+      </ul>
+
+      <h2 id="content">Your content</h2>
+      <p>Your chats and files belong to you. You give us permission to process them only as needed to run the service, apply the scanning rules and meet legal duties. How we handle personal data is described in the <a href="privacy.html">Privacy Policy</a> and <a href="gdpr.html">GDPR information</a>.</p>
+
+      <h2 id="fees">Fees</h2>
+      <p>Free is free. Pro costs <span class="todo">[price and billing period]</span>, invoiced through <span class="todo">[Eezy / your invoicing method]</span>. <span class="todo">[Cancellation and refund terms.]</span> Mandatory consumer rights are not affected.</p>
+
+      <h2 id="ending">Suspension and ending</h2>
+      <p>You can stop at any time by emailing us to delete your account. We may warn, suspend or end your access if you break these terms, if the law requires it, or if we stop the service. Accounts inactive for 60 days are deleted.</p>
+
+      <h2 id="liability">Liability</h2>
+      <p>The service is provided as is. To the extent the law allows, we are not liable for indirect losses, lost data, or harm resulting from AI output. Nothing here limits liability that can't be limited by law, including for intent or gross negligence, or your mandatory consumer rights.</p>
+
+      <h2 id="law">Law and changes</h2>
+      <p>These terms are governed by Finnish law. Consumers can also use the Consumer Disputes Board and keep any mandatory rights they have in their country. We may update these terms; we'll tell account holders by email before material changes apply. Questions: <a href="mailto:you@example.com"><span class="todo">[email]</span></a>.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 Voxyl AI</span>
+      <nav class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="mailto:you@example.com">Contact</a>
+      </nav>
     </div>
-
-    <div class="legal-body">
-      <div class="legal-section">
-        <h2>1. Using Voxyl AI</h2>
-        <p>Voxyl AI is a chat assistant available on a Free plan and a paid Pro plan. You can use it for personal or professional purposes, as long as that use follows these terms and any applicable law.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>2. Your account</h2>
-        <p>You need an account to chat with Voxyl AI. You're responsible for keeping your login details secure and for anything that happens under your account. Let us know if you think someone else has access to it.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>3. Free and Pro plans</h2>
-        <p>Free gives you unlimited conversations. Pro adds more features and early access to new features, billed on a recurring basis until you cancel.</p>
-        <p>You can cancel Pro at any time. You'll keep Pro access until the end of the billing period you already paid for, then move back to Free.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>4. Acceptable use</h2>
-        <p>Don't use Voxyl to break the law, harm others, or try to disrupt or reverse-engineer the service. We can suspend or close accounts that do.</p>
-        <ul>
-          <li>No illegal, abusive, or harassing use</li>
-          <li>No attempts to interfere with or overload the service</li>
-          <li>No reselling access to Voxyl without our permission</li>
-        </ul>
-      </div>
-
-      <div class="legal-section">
-        <h2>5. Your content</h2>
-        <p>You keep ownership of what you type into Voxyl. We don't sell your conversations or share them with advertisers — see the <a href="https://voxylai.com/privacy">privacy section</a> for more on how your data is handled.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>6. Termination</h2>
-        <p>You can stop using Voxyl and delete your account at any time. We may suspend or close accounts that violate these terms, with notice where we reasonably can.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>7. No warranty</h2>
-        <p>Voxyl is provided as-is. Like any AI chat assistant, responses can be incomplete or wrong, so don't rely on them as professional advice — medical, legal, financial, or otherwise — without checking with a qualified person.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>8. Changes to these terms</h2>
-        <p>We may update these terms as Voxyl changes. If we make a material change, we'll update the date above and let you know through the product.</p>
-      </div>
-
-      <div class="legal-section">
-        <h2>9. Contact</h2>
-        <p>Questions about these terms? Reach us at <a href="mailto:voxylai.com@proton.me">voxylai.com@proton.me</a>.</p>
-      </div>
-    </div>
-
-    <a href="https://voxylai.com" class="legal-back">← Back to Voxyl AI</a>
-  </div>
-</main>
-
-<footer>
-  <div class="wrap footer-row">
-    <a href="https://voxylai.com" class="logo">
-      <img class="logo-mark" aria-hidden="true" src="../logo.png">
-      Voxyl AI
-    </a>
-    <ul class="footer-links">
-      <li><a href="https://voxylai.com/tos">Terms of Service</a></li>
-      <li><a href="https://voxylai.com/privacy-policy">Privacy Policy</a></li>
-      <li><a href="https://voxylai.com/gdpr">GDPR</a></li>
-    </ul>
-    <div class="footer-copy">© 2026 Voxyl AI</div>
-  </div>
-</footer>
-
-<script>
-  const themeToggle = document.getElementById('theme-toggle');
-  themeToggle.addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const next = isDark ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    themeToggle.setAttribute('aria-checked', String(!isDark));
-    themeToggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-  });
-</script>
-
+  </footer>
 </body>
 </html>
